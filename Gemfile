@@ -39,7 +39,6 @@ gem "bootsnap", require: false
 # GraphQL is a query language for APIs and a runtime for fulfilling those queries with the existing data. 
 gem 'graphql'
 gem 'faraday'
-gem 'sprockets'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
