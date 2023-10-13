@@ -83,4 +83,5 @@ production:
   <<: *default
   database: BE_foodie_brain_production
   username: BE_foodie_brain
+  url: <%= ENV['DATABASE_URL'] %>
   password: <%= ENV["BE_FOODIE_BRAIN_DATABASE_PASSWORD"] %>
