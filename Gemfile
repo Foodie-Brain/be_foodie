@@ -53,5 +53,6 @@ end
 
 group :development do
   gem 'graphiql-rails'
+  gem 'sprockets'
 end
 

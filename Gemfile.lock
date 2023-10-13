@@ -239,6 +239,7 @@ DEPENDENCIES
   rspec-rails
   shoulda-matchers (~> 5.0)
   simplecov
+  sprockets
   tzinfo-data
 
 RUBY VERSION
