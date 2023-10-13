@@ -1,15 +1,8 @@
-## Pull Request Checklist
-- [ ] Have you read the [contributing guidelines](CONTRIBUTING.md)?
-- [ ] Have you checked if there are other open pull requests for the same issue/suggestion?
+### Description of changes
 
-## Description
-[Explain the changes you've made.]
+### Test Suite
+- [] Are all tests within the test suite passing?
 
-## Related Issue
-[Link to the related issue (if applicable)]
+### Specific Feedback Request(s)
 
-## Screenshots (if applicable)
-[Screenshots to showcase the changes made.]
-
-## Additional Notes
-[Any additional information or context about the pull request.]
+#### Add GIF (REQUIRED)
