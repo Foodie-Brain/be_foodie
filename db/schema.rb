@@ -18,15 +18,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_212027) do
     t.string "name"
     t.string "photo"
     t.string "description"
-    t.integer "dairy_free"
-    t.integer "gluten_free"
-    t.integer "halal"
-    t.integer "kosher"
-    t.integer "nut_free"
-    t.integer "vegan"
-    t.integer "vegitarian"
-    t.integer "likes"
-    t.integer "dislikes"
+    t.integer "dairy_free", default: 0
+    t.integer "gluten_free", default: 0
+    t.integer "halal", default: 0
+    t.integer "kosher", default: 0
+    t.integer "nut_free", default: 0
+    t.integer "vegan", default: 0
+    t.integer "vegitarian", default: 0
+    t.integer "likes", default: 0
+    t.integer "dislikes", default: 0
     t.string "lat"
     t.string "lon"
     t.datetime "created_at", null: false
