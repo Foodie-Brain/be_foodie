@@ -8,7 +8,7 @@ class Mutations::CreateReview < Mutations::BaseMutation
   argument :kosher, Integer, required: false, default_value: 0
   argument :nut_free, Integer, required: false, default_value: 0
   argument :vegan, Integer, required: false, default_value: 0
-  argument :vegitarian, Integer, required: false, default_value: 0
+  argument :vegetarian, Integer, required: false, default_value: 0
   argument :likes, Integer, required: false, default_value: 0
   argument :dislikes, Integer, required: false, default_value: 0
   argument :lat, String, required: true
@@ -16,7 +16,7 @@ class Mutations::CreateReview < Mutations::BaseMutation
 
   type Types::ReviewType
 
-  def resolve(name:, photo:, description:, dairy_free:, gluten_free:, halal:, kosher:, nut_free:, vegan:, vegitarian:, likes:, dislikes:, lat:, lon:)
+  def resolve(name:, photo:, description:, dairy_free:, gluten_free:, halal:, kosher:, nut_free:, vegan:, vegetarian:, likes:, dislikes:, lat:, lon:)
     Review.create(name: name, 
       photo: photo, 
       description: description, 
@@ -26,7 +26,7 @@ class Mutations::CreateReview < Mutations::BaseMutation
       kosher: kosher, 
       nut_free: nut_free, 
       vegan: vegan, 
-      vegitarian: vegitarian, 
+      vegetarian: vegetarian, 
       likes: likes, 
       dislikes: dislikes, 
       lat: lat, 

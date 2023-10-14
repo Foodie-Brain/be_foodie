@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_212027) do
     t.integer "kosher", default: 0
     t.integer "nut_free", default: 0
     t.integer "vegan", default: 0
-    t.integer "vegitarian", default: 0
+    t.integer "vegetarian", default: 0
     t.integer "likes", default: 0
     t.integer "dislikes", default: 0
     t.string "lat"
