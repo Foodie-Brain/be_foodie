@@ -104,7 +104,7 @@ end
 
 - Status: 200 OK
 - Description: Successful response with a Review.
-- Data Format: A hash of review objects, each contiaing ---
+- Data Format: A hash of review objects, each containing an id, name, description, lat/lon and dietary tag.
 
 ```ruby
 json contract
