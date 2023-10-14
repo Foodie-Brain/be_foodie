@@ -1,6 +1,6 @@
 class Mutations::CreateReview < Mutations::BaseMutation
   argument :name, String, required: true
-  argument :photo, String #TODO: Make field required
+  argument :photo, String # TODO make photo required
   argument :description, String, required: true
   argument :dairy_free, Integer, required: false, default_value: 0
   argument :gluten_free, Integer, required: false, default_value: 0
