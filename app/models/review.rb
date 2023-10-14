@@ -12,7 +12,7 @@ class Review < ApplicationRecord
                             :kosher, 
                             :nut_free, 
                             :vegan, 
-                            :vegetarian, 
+                            :vegitarian, 
                             :likes, 
                             :dislikes
 end
