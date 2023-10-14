@@ -116,7 +116,7 @@ json contract
 
 | Action | Route |
 | ----------- | ----------- |
-| post | '/api/v0/graphql' |
+| post | '/graphql' |
 
 # Test Suite
  - run `bundle exec rspec` to run the test suite
@@ -150,6 +150,9 @@ During the development of our Ruby on Rails application Foodie Brain, we had the
 
 
 In conclusion, working on this Ruby on Rails application was a challenging yet awarding experience. It brought together various aspects of web development, challenging us to create a dynamic application. The project allowed us to expand our knowledge and skills in API integration, database design, frontend development, and introduced a new tech in graphql. And it provided valuable lessons that will guide us in future endeavors.
+
+# Frontend Repo Link
+[Frontend Repo](https://github.com/Foodie-Brain/fe_foodie)
 
 ---
 # Developed With
