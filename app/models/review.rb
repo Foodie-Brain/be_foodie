@@ -1,10 +1,10 @@
 class Review < ApplicationRecord
 
   validates_presence_of :name, 
-                        :photo, 
                         :description, 
                         :lat, 
                         :lon
+                        #Todo add photo here 
 
   validates_numericality_of :dairy_free, 
                             :gluten_free, 
