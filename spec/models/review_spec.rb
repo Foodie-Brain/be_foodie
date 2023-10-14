@@ -13,7 +13,7 @@ RSpec.describe Review, type: :model do
     it { should validate_numericality_of(:kosher) }
     it { should validate_numericality_of(:nut_free) }
     it { should validate_numericality_of(:vegan) }
-    it { should validate_numericality_of(:vegitarian) }
+    it { should validate_numericality_of(:vegetarian) }
     it { should validate_numericality_of(:likes) }
     it { should validate_numericality_of(:dislikes) }
   end
