@@ -2,15 +2,15 @@ class Mutations::CreateReview < Mutations::BaseMutation
   argument :name, String, required: true
   argument :photo, String #TODO: Make field required
   argument :description, String, required: true
-  argument :dairy_free, Integer
-  argument :gluten_free, Integer
-  argument :halal, Integer
-  argument :kosher, Integer
-  argument :nut_free, Integer
-  argument :vegan, Integer
-  argument :vegitarian, Integer
-  argument :likes, Integer
-  argument :dislikes, Integer
+  argument :dairy_free, Integer, required: false, default_value: 0
+  argument :gluten_free, Integer, required: false, default_value: 0
+  argument :halal, Integer, required: false, default_value: 0
+  argument :kosher, Integer, required: false, default_value: 0
+  argument :nut_free, Integer, required: false, default_value: 0
+  argument :vegan, Integer, required: false, default_value: 0
+  argument :vegitarian, Integer, required: false, default_value: 0
+  argument :likes, Integer, required: false, default_value: 0
+  argument :dislikes, Integer, required: false, default_value: 0
   argument :lat, String, required: true
   argument :lon, String, required: true
 
