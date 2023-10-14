@@ -16,7 +16,7 @@ RSpec.describe Types::QueryType, type: :query do
             kosher
             nutFree
             vegan
-            vegitarian
+            vegetarian
             likes
             dislikes
             lat
@@ -42,7 +42,7 @@ RSpec.describe Types::QueryType, type: :query do
           "kosher" => review.kosher,
           "nutFree" => review.nut_free,
           "vegan" => review.vegan,
-          "vegitarian" => review.vegitarian,
+          "vegetarian" => review.vegetarian,
           "likes" => review.likes,
           "dislikes" => review.dislikes,
           "lat" => review.lat,
@@ -65,7 +65,7 @@ RSpec.describe Types::QueryType, type: :query do
             kosher
             nutFree
             vegan
-            vegitarian
+            vegetarian
             likes
             dislikes
             lat
@@ -92,7 +92,7 @@ RSpec.describe Types::QueryType, type: :query do
           "kosher" => review.kosher,
           "nutFree" => review.nut_free,
           "vegan" => review.vegan,
-          "vegitarian" => review.vegitarian,
+          "vegetarian" => review.vegetarian,
           "likes" => review.likes,
           "dislikes" => review.dislikes,
           "lat" => review.lat,

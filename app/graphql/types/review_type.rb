@@ -12,7 +12,7 @@ module Types
     field :kosher, Integer
     field :nut_free, Integer
     field :vegan, Integer
-    field :vegitarian, Integer
+    field :vegetarian, Integer
     field :likes, Integer
     field :dislikes, Integer
     field :lat, String
