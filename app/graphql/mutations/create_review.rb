@@ -15,9 +15,10 @@ class Mutations::CreateReview < Mutations::BaseMutation
   argument :lon, String, required: true
 
   type Types::ReviewType
+  field :errors, [String], null: false
 
   def resolve(name:, photo:, description:, dairy_free:, gluten_free:, halal:, kosher:, nut_free:, vegan:, vegetarian:, likes:, dislikes:, lat:, lon:)
-    Review.create(name: name, 
+    review = Review.new(name: name, 
       photo: photo, 
       description: description, 
       dairy_free: dairy_free, 
@@ -31,5 +32,12 @@ class Mutations::CreateReview < Mutations::BaseMutation
       dislikes: dislikes, 
       lat: lat, 
       lon: lon)
+
+      if review.valid?
+        review.save
+      else
+        raise GraphQL::ExecutionError, review.errors.full_messages.join(', ')
+      end
+      review
   end
 end
