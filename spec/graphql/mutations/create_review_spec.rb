@@ -106,7 +106,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
         GQL
       end
 
-    it 'sad path' do
+    it 'returns an error when required fields not provided' do
       input = {
         name:'',
         description: description,
