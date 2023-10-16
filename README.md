@@ -22,8 +22,7 @@ Some quick points of Foodie Brain
 - [Getting Started](#getting-started)
 - [Endpoints](#endpoints)
 - [Test Suite](#test-suite)
-- [Graphql](#graphql)
-- [API JSON Contract](#api-json-contract)
+- [Graphql JSON Contract](#graphql-json-contract)
 - [Reflection](#reflection)
 - [Developed With](#developed-with)
 - [FRONTEND REPO LINK](https://github.com/Foodie-Brain/fe_foodie)
@@ -47,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_212027) do
     t.integer "kosher", default: 0
     t.integer "nut_free", default: 0
     t.integer "vegan", default: 0
-    t.integer "vegitarian", default: 0
+    t.integer "vegetarian", default: 0
     t.integer "likes", default: 0
     t.integer "dislikes", default: 0
     t.string "lat"
@@ -92,26 +91,179 @@ end
   - Run `rails s` to start the server
   - Open your browser and navigate to `localhost:3000`
 
-## API JSON Contract
+## Graphql JSON Contract
 *Description of API endpoints for front end application*
 
-<u> Reviews </u>
-- Description of Reviews
+<u> All Reviews </u>
+- Description of all reviews
 
-> `POST /api/v0/graphql`
+> `POST /graphql`
+
+*Request Body:*
+
+```ruby
+	{
+      reviews {
+        id
+        name
+        description
+        glutenFree
+        lat
+        lon
+        }
+		}
+```
+
+*Success Response (200 OK):*
+
+- Status: 200 OK
+- Description: Successful response with all Reviews.
+- Data Format: A hash of review objects, each containing an id, name, description, lat/lon and dietary tag.
+
+```ruby
+{
+    "data": {
+        "reviews": [
+            {
+                "id": "1",
+                "name": "Flu Shot Pho",
+                "description": "Pho with lemongrass, lime, and chili broth",
+                "glutenFree": 0,
+                "lat": "39.6880903110667",
+                "lon": "-104.94002900531989"
+            },
+            {
+                "id": "2",
+                "name": "ramen",
+                "description": "noddles",
+                "glutenFree": 0,
+                "lat": "0999",
+                "lon": "-999"
+            },
+            {
+                "id": "3",
+                "name": "ramen",
+                "description": "noddles",
+                "glutenFree": 0,
+                "lat": "0999",
+                "lon": "-999"
+            },
+            {
+                "id": "4",
+                "name": "SUCUK TOST",
+                "description": "Grilled sourdough bread filled with Sucuk (Turkish sausage) and mozzarella cheese.",
+                "glutenFree": 0,
+                "lat": "39.7014138",
+                "lon": "-104.911551"
+            },
+            {
+                "id": "5",
+                "name": "SUCUK TOST",
+                "description": "Grilled sourdough bread filled with Sucuk (Turkish sausage) and mozzarella cheese.",
+                "glutenFree": 0,
+                "lat": "39.7014138",
+                "lon": "-104.911551"
+            }
+        ]
+    }
+}
+```
+
+<u> Individual Review </u>
+- Description of an individual review
+
+> `POST /graphql`
+
+*Request Body:*
+
+```ruby
+ {
+      review(id: 1) {
+          id
+          name
+          description
+          glutenFree
+          lat
+        	lon
+      }
+    }
+```
 
 *Success Response (200 OK):*
 
 - Status: 200 OK
 - Description: Successful response with a Review.
-- Data Format: A hash of review objects, each containing an id, name, description, lat/lon and dietary tag.
+- Data Format: A hash containing a review object, containing an id, name, description, lat/lon and dietary tag.
 
 ```ruby
-json contract
+{
+    "data": {
+        "review": {
+            "id": "1",
+            "name": "Flu Shot Pho",
+            "description": "Pho with lemongrass, lime, and chili broth",
+            "glutenFree": 0,
+            "lat": "39.6880903110667",
+            "lon": "-104.94002900531989"
+        }
+    }
+}
+```
+<u> Create a Review </u>
+- Description of creating a review
+
+> `POST /graphql`
+
+*Request Body:*
+
+```ruby
+ mutation {
+      createReview(input: {
+        name: "FireCracker Sushi", 
+        photo: "nada.jpg", 
+        description: "Fried sushi roll with salmon, creamcheese, and jalapenos",
+        dairyFree: 1, 
+        glutenFree: 1, 
+        halal: 1, 
+        kosher: 1, 
+        nutFree: 1, 
+        vegan: 1, 
+        vegitarian: 1, 
+        likes: 312, 
+        dislikes: 5, 
+        lat: "39.72903251256764", 
+        lon: "-104.93865153415369"
+      }) {
+        	id
+          name
+          description
+          glutenFree
+          lat
+        	lon
+      }
+    } 
 ```
 
-# Graphql
+*Success Response (200 OK):*
 
+- Status: 200 OK
+- Description: Successful response for creating a Review.
+- Data Format: A hash containing a review object, containing an id, name, description, lat/lon and dietary tag.
+
+```ruby
+{
+    "data": {
+        "createReview": {
+            "id": "6",
+            "name": "FireCracker Sushi",
+            "description": "Fried sushi roll with salmon, creamcheese, and jalapenos",
+            "glutenFree": 1,
+            "lat": "39.72903251256764",
+            "lon": "-104.93865153415369"
+        }
+    }
+}
+```
 # Routes
 
 | Action | Route |
