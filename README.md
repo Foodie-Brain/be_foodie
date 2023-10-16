@@ -8,7 +8,9 @@ Some quick points of Foodie Brain
 - Mark and explore food spots and dishes on an interactive map.
 - Share photos and reviews with fellow food enthusiasts.
 
-## Authors
+<details>
+<summary>Authors</summary>
+<!-- ## Authors -->
 
 ### BE Team
 - Gabe Torres [GitHub](https://github.com/Gabe-Torres) | [LinkedIn](https://www.linkedin.com/in/gabe-torres-74a515269/)
@@ -17,17 +19,20 @@ Some quick points of Foodie Brain
 - Zanna Fitch [GitHub](https://github.com/z-fitch) | [LinkedIn](https://www.linkedin.com/in/zannafitch/)
 
 ### FE Team
+</details>
 
 ## Summary 
 - [Getting Started](#getting-started)
-- [Endpoints](#endpoints)
-- [Test Suite](#test-suite)
 - [Graphql JSON Contract](#graphql-json-contract)
+- [Routes](#routes)
+- [Test Suite](#test-suite)
 - [Reflection](#reflection)
-- [Developed With](#developed-with)
 - [FRONTEND REPO LINK](https://github.com/Foodie-Brain/fe_foodie)
+- [Developed With](#developed-with)
 
 ## Getting Started
+<details>
+<summary>Database Information</summary>
 
 **Schema**
 
@@ -90,11 +95,14 @@ end
   - Run `rails db:{create,migrate,seed}`
   - Run `rails s` to start the server
   - Open your browser and navigate to `localhost:3000`
+</details>
 
 ## Graphql JSON Contract
 *Description of API endpoints for front end application*
 
-<u> All Reviews </u>
+<details>
+<summary>All Reviews</summary>
+<!-- <u> All Reviews </u> -->
 - Description of all reviews
 
 > `POST /graphql`
@@ -168,8 +176,12 @@ end
     }
 }
 ```
+</details>
 
-<u> Individual Review </u>
+
+<details>
+<summary>Individual Review</summary>
+<!-- <u> Individual Review </u> -->
 - Description of an individual review
 
 > `POST /graphql`
@@ -209,7 +221,11 @@ end
     }
 }
 ```
-<u> Create a Review </u>
+</details>
+
+<details>
+<summary>Create a Review</summary>
+<!-- <u> Create a Review </u> -->
 - Description of creating a review
 
 > `POST /graphql`
@@ -264,26 +280,173 @@ end
     }
 }
 ```
+</details>
+
 # Routes
 
 | Action | Route |
 | ----------- | ----------- |
 | post | '/graphql' |
 
+
 # Test Suite
  - run `bundle exec rspec` to run the test suite
 
-**HappyPath**
-```ruby
-happy
-```
+<details>
+<summary>Happy Path</summary>
 
-**SadPath**
+<!-- **HappyPath** -->
 ```ruby
-sad
+RSpec.describe Mutations::CreateReview, type: :mutation do
+  describe 'createReview' do
+    let(:name) { "Cinnamon Coffee Cake" }
+    let(:description) { "Found this absolutely delicious coffee cake at Kochi coffee, and it's gluten-free!" }
+    let(:photo) { "fake_url.png" }
+    let(:gluten_free) { 1 }
+    let(:lat) { "39.72740886344144" }
+    let(:lon) { "-104.93939410569635" }
+
+      let(:mutation) do
+        <<~GQL
+          mutation createReview($input: CreateReviewInput!) {
+            createReview(input: $input) {
+              id
+              name
+              description
+              photo
+              dairyFree
+              glutenFree
+              halal
+              kosher
+              nutFree
+              vegan
+              vegetarian
+              likes
+              dislikes
+              lat
+              lon
+            }
+          }
+        GQL
+      end
+
+    it 'creates a new review' do
+      input = {
+        name: name,
+        description: description,
+        photo: photo,
+        glutenFree: gluten_free,
+        lat: lat,
+        lon: lon
+      }
+
+      result = BeFoodieBrainSchema.execute(
+        mutation,
+        variables: { input: input }
+      )
+
+      expect(result["errors"]).to be_nil
+
+      review = Review.last
+
+      expect(result.dig("data", "createReview", "id")).to eq(review.id.to_s)
+      expect(result.dig("data", "createReview", "name")).to eq(name)
+      expect(result.dig("data", "createReview", "description")).to eq(description)
+      expect(result.dig("data", "createReview", "photo")).to eq(photo)
+      expect(result.dig("data", "createReview", "glutenFree")).to eq(gluten_free)
+      expect(result.dig("data", "createReview", "lat")).to eq(lat)
+      expect(result.dig("data", "createReview", "lon")).to eq(lon)
+
+      expect(result.dig("data", "createReview", "dairyFree")).to eq(0)
+      expect(result.dig("data", "createReview", "halal")).to eq(0)
+      expect(result.dig("data", "createReview", "kosher")).to eq(0)
+      expect(result.dig("data", "createReview", "nutFree")).to eq(0)
+      expect(result.dig("data", "createReview", "vegan")).to eq(0)
+      expect(result.dig("data", "createReview", "vegetarian")).to eq(0)
+      expect(result.dig("data", "createReview", "likes")).to eq(0)
+      expect(result.dig("data", "createReview", "dislikes")).to eq(0)
 ```
+</details>
+
+<details>
+<summary>Sad Path</summary>
+
+```ruby
+describe 'returns an error when no input is provided' do
+    let(:name) { "Cinnamon Coffee Cake" }
+    let(:description) { "Found this absolutely delicious coffee cake at Kochi coffee, and it's gluten-free!" }
+    let(:photo) { "fake_url.png" }
+    let(:gluten_free) { 1 }
+    let(:lat) { "39.72740886344144" }
+    let(:lon) { "-104.93939410569635" }
+
+      let(:mutation) do
+        <<~GQL
+          mutation createReview($input: CreateReviewInput!) {
+            createReview(input: $input) {
+              id
+              name
+              description
+              photo
+              dairyFree
+              glutenFree
+              halal
+              kosher
+              nutFree
+              vegan
+              vegetarian
+              likes
+              dislikes
+              lat
+              lon
+            }
+          }
+        GQL
+      end
+
+    it 'returns an error when required fields not provided' do
+      input = {
+        name:'',
+        description: description,
+        photo: photo,
+        glutenFree: gluten_free,
+        lat: lat,
+        lon: lon
+      }
+
+      result = BeFoodieBrainSchema.execute(
+        mutation,
+        variables: { input: input }
+      )
+
+      expect(result["errors"]).to_not be_nil
+      expect(result.dig("data", "createReview")).to be_nil
+      expect(result["errors"][0]["message"]).to eq("Name can't be blank")
+
+      input2 = {
+        name: '',
+        description: '',
+        photo: photo,
+        glutenFree: gluten_free,
+        lat: lat,
+        lon: lon
+      }
+
+      result2 = BeFoodieBrainSchema.execute(
+        mutation,
+        variables: { input: input2 }
+      )
+
+      expect(result2["errors"][0]["message"]).to eq("Name can't be blank, Description can't be blank")
+    end
+  end
+end
+```
+</details>
 
 ## Reflection 
+<details>
+<summary>Our reflection of building Foodie Brain</summary>
 During the development of our Ruby on Rails application Foodie Brain, we had the opportunity to work on an exciting and challenging project that combined aspects of web development, including API integration, database design, graphql, and frontend development/backend collaboration. This reflection highlights key aspects of our work and the lessons learned during the development of Foodie Brain.
 
 <u> API Integration: </u>
@@ -302,6 +465,7 @@ During the development of our Ruby on Rails application Foodie Brain, we had the
 
 
 In conclusion, working on this Ruby on Rails application was a challenging yet awarding experience. It brought together various aspects of web development, challenging us to create a dynamic application. The project allowed us to expand our knowledge and skills in API integration, database design, frontend development, and introduced a new tech in graphql. And it provided valuable lessons that will guide us in future endeavors.
+</details>
 
 # Frontend Repo Link
 [Frontend Repo](https://github.com/Foodie-Brain/fe_foodie)
