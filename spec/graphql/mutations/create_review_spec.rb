@@ -24,7 +24,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
               kosher
               nutFree
               vegan
-              vegitarian
+              vegetarian
               likes
               dislikes
               lat
@@ -68,7 +68,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
       expect(result.dig("data", "createReview", "kosher")).to eq(0)
       expect(result.dig("data", "createReview", "nutFree")).to eq(0)
       expect(result.dig("data", "createReview", "vegan")).to eq(0)
-      expect(result.dig("data", "createReview", "vegitarian")).to eq(0)
+      expect(result.dig("data", "createReview", "vegetarian")).to eq(0)
       expect(result.dig("data", "createReview", "likes")).to eq(0)
       expect(result.dig("data", "createReview", "dislikes")).to eq(0)
     end
