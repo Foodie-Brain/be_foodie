@@ -9,5 +9,5 @@ require_relative "config/application"
 Rails.application.load_tasks
 
 GraphQL::RakeTask.new(
-  schema_name: 'AppSchema', # this needs to be your generated schema class name
+  schema_name: 'BeFoodieBrainSchema', # this needs to be your generated schema class name
 )
