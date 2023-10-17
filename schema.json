@@ -1,0 +1,35 @@
+{
+  "errors": [
+    {
+      "message": "Schema is not configured for queries",
+      "locations": [
+        {
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "path": [
+        "query IntrospectionQuery"
+      ],
+      "extensions": {
+        "code": "missingQueryConfiguration"
+      }
+    },
+    {
+      "message": "Fragment FullType was defined, but not used",
+      "locations": [
+        {
+          "line": 21,
+          "column": 1
+        }
+      ],
+      "path": [
+        "fragment FullType"
+      ],
+      "extensions": {
+        "code": "useAndDefineFragment",
+        "fragmentName": "FullType"
+      }
+    }
+  ]
+}
