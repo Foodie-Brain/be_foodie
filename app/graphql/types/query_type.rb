@@ -13,7 +13,7 @@ module Types
     field :nodes, [Types::NodeType, null: true], null: true, description: "Fetches a list of objects given a list of IDs." do
       argument :ids, [ID], required: true, description: "IDs of the objects."
     end
-
+    
     def nodes(ids:)
       ids.map { |id| context.schema.object_from_id(id, context) }
     end
@@ -27,9 +27,14 @@ module Types
         argument :id, ID, required: true
       end
     def review(id:)
-      Review.find_by(id: id)
-    end
+      review = Review.find_by(id: id)
 
+      if review.nil?
+        raise GraphQL::ExecutionError, "Review not found with id: #{id}"
+      end
+        review
+    end
+    
     field :reviews,
       [Types::ReviewType],
       null: false,
