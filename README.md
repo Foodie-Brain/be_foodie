@@ -1,7 +1,5 @@
 # Foodie Brain :bento: :brain:
 
-*An application developed with Ruby on Rails and React*
-
 An application that allows users to mark and share their favorite food spots and dishes on a map. Users will be able to see the locations mark and decide if they want to try it. It is a fast and easy way to enjoy and find new food trends and expand your taste buds. Foodie brain connects users as one, food lover application
 
 Some quick points of Foodie Brain
@@ -10,7 +8,6 @@ Some quick points of Foodie Brain
 - Vote on your favorite dishes and spots.
 <details>
 <summary>Authors</summary>
-<!-- ## Authors -->
 
 ### BE Team
 - Gabe Torres [GitHub](https://github.com/Gabe-Torres) | [LinkedIn](https://www.linkedin.com/in/gabe-torres-74a515269/)
@@ -104,7 +101,7 @@ end
 
 <details>
 <summary>All Reviews</summary>
-<!-- <u> All Reviews </u> -->
+
 - Description of all reviews
 
 > `POST /graphql`
@@ -130,6 +127,7 @@ end
 - Description: Successful response with all Reviews.
 - Data Format: A hash of review objects, each containing an id, name, description, lat/lon and dietary tag.
 
+*Return*
 ```ruby
 {
     "data": {
@@ -178,12 +176,60 @@ end
     }
 }
 ```
+---
+*Error Response (400):*
+
+- Status: 400 Bad Request
+- Description: An error response indicating that the request was invalid.
+- Data Format: A hash of that contains the key "errors" and a message describing the error in detail.
+
+*Request Body:*
+
+```ruby
+	{
+      reviews {
+        id
+        name
+        price
+        glutenFree
+        lat
+        lon
+        }
+		}
+```
+
+*Return*
+```ruby
+{
+    "errors": [
+        {
+            "message": "Field 'price' doesn't exist on type 'Review'",
+            "locations": [
+                {
+                    "line": 5,
+                    "column": 9
+                }
+            ],
+            "path": [
+                "query",
+                "reviews",
+                "price"
+            ],
+            "extensions": {
+                "code": "undefinedField",
+                "typeName": "Review",
+                "fieldName": "price"
+            }
+        }
+    ]
+}
+```
 </details>
 
 
 <details>
 <summary>Individual Review</summary>
-<!-- <u> Individual Review </u> -->
+
 - Description of an individual review
 
 > `POST /graphql`
@@ -209,6 +255,7 @@ end
 - Description: Successful response with a Review.
 - Data Format: A hash containing a review object, containing an id, name, description, lat/lon and dietary tag.
 
+*Return*
 ```ruby
 {
     "data": {
@@ -223,11 +270,53 @@ end
     }
 }
 ```
+---
+*Error Response (400):*
+
+- Status: 400 Bad Request
+- Description: An error response indicating that the request was invalid as no Review matches the requested ID.
+- Data Format: A hash of that contains the key "errors" and a message describing the error in detail.
+
+*Request Body:*
+
+```ruby
+	{
+      reviews(id: 999) {
+        id
+        name
+        price
+        glutenFree
+        lat
+        lon
+        }
+		}
+```
+
+*Return*
+```ruby 
+{
+  "data": null,
+  "errors": [
+    {
+      "message": "Review not found with id: 999",
+      "locations": [
+        {
+          "line": 2,
+          "column": 7
+        }
+      ],
+      "path": [
+        "review"
+      ]
+    }
+  ]
+}
+```
 </details>
 
 <details>
 <summary>Create a Review</summary>
-<!-- <u> Create a Review </u> -->
+
 - Description of creating a review
 
 > `POST /graphql`
@@ -268,6 +357,7 @@ end
 - Description: Successful response for creating a Review.
 - Data Format: A hash containing a review object, containing an id, name, description, lat/lon and dietary tag.
 
+*Return*
 ```ruby
 {
     "data": {
@@ -280,6 +370,65 @@ end
             "lon": "-104.93865153415369"
         }
     }
+}
+```
+---
+*Error Response (400):*
+
+- Status: 400 Bad Request
+- Description: An error response indicating that the request was invalid as all required fields need input.
+- Data Format: A hash of that contains the key "errors" and a message describing the error in detail.
+
+*Request Body:*
+
+```ruby
+	mutation {
+      createReview(input: {
+        name: "", 
+        photo: "nada.jpg", 
+        description: "",
+        dairyFree: 1, 
+        glutenFree: 1, 
+        halal: 1, 
+        kosher: 1, 
+        nutFree: 1, 
+        vegan: 1, 
+        vegetarian: 1, 
+        likes: 312, 
+        dislikes: 5, 
+        lat: "39.72903251256764", 
+        lon: "-104.93865153415369"
+      }) {
+        	id
+          name
+          description
+          glutenFree
+          lat
+        	lon
+      }
+    } 
+```
+
+*Response* 
+```ruby
+{
+    "data": {
+        "createReview": null
+    },
+    "errors": [
+        {
+            "message": "Name can't be blank, Description can't be blank",
+            "locations": [
+                {
+                    "line": 2,
+                    "column": 7
+                }
+            ],
+            "path": [
+                "createReview"
+            ]
+        }
+    ]
 }
 ```
 </details>
@@ -297,7 +446,6 @@ end
 <details>
 <summary>Happy Path</summary>
 
-<!-- **HappyPath** -->
 ```ruby
 RSpec.describe Mutations::CreateReview, type: :mutation do
   describe 'createReview' do
@@ -476,7 +624,5 @@ In conclusion, working on this Ruby on Rails application was a challenging yet a
 
 ---
 ## Developed With
----
 
-
-<img src="https://user-images.githubusercontent.com/127896538/267407283-0389dace-15c6-493c-a3b7-3a833f0a20f2.png" width="50" alt="Rails Logo"><img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/heroku/heroku-original-wordmark.svg" width="50" alt="heroku Logo"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original-wordmark.svg" width="50" alt="github Logo"><img src="https://user-images.githubusercontent.com/127896538/267406979-5e0db686-91a1-42ee-9bda-675a5c5c2266.png" width="50" alt="Ruby Logo"><img  src='https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg' width='50' alt='sql'><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/circleci/circleci-plain-wordmark.svg" width="50" alt="Circle CI"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/graphql/graphql-plain-wordmark.svg" width="50" alt="graphql">
+<img src="https://user-images.githubusercontent.com/127896538/267407283-0389dace-15c6-493c-a3b7-3a833f0a20f2.png" width="50" alt="Rails Logo"><img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/heroku/heroku-original-wordmark.svg" width="50" alt="heroku Logo"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original-wordmark.svg" width="50" alt="github Logo"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/ruby/ruby-plain-wordmark.svg" width="50" alt="Ruby Logo"><img  src='https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg' width='50' alt='sql'><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/circleci/circleci-plain-wordmark.svg" width="50" alt="Circle CI"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/graphql/graphql-plain-wordmark.svg" width="50" alt="graphql"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rspec/rspec-original-wordmark.svg" width="70" alt="rspec"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-plain-wordmark.svg" width="50" alt="git">
