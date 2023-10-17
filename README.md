@@ -1,13 +1,13 @@
 # Foodie Brain :bento: :brain:
 
-*An application developed with Ruby on Rails*
+*An application developed with Ruby on Rails and React*
 
 An application that allows users to mark and share their favorite food spots and dishes on a map. Users will be able to see the locations mark and decide if they want to try it. It is a fast and easy way to enjoy and find new food trends and expand your taste buds. Foodie brain connects users as one, food lover application
 
 Some quick points of Foodie Brain
 - Mark and explore food spots and dishes on an interactive map.
 - Share photos and reviews with fellow food enthusiasts.
-
+- Vote on your favorite dishes and spots.
 <details>
 <summary>Authors</summary>
 <!-- ## Authors -->
@@ -19,6 +19,8 @@ Some quick points of Foodie Brain
 - Zanna Fitch [GitHub](https://github.com/z-fitch) | [LinkedIn](https://www.linkedin.com/in/zannafitch/)
 
 ### FE Team
+- Paulina Rubio [GitHub](https://github.com/paulina-isabel) | [LinkedIn](https://www.linkedin.com/in/paulina-isabel-rubio/)
+- Lauren DeLaRosa [GitHub](https://github.com/LDeLaRosa13) | [LinkedIn](https://www.linkedin.com/in/lauren-delarosa-3a5a4b260/)
 </details>
 
 ## Summary 
@@ -27,7 +29,7 @@ Some quick points of Foodie Brain
 - [Routes](#routes)
 - [Test Suite](#test-suite)
 - [Reflection](#reflection)
-- [FRONTEND REPO LINK](https://github.com/Foodie-Brain/fe_foodie)
+- [Important Links](#important-links)
 - [Developed With](#developed-with)
 
 ## Getting Started
@@ -282,14 +284,14 @@ end
 ```
 </details>
 
-# Routes
+## Routes
 
 | Action | Route |
 | ----------- | ----------- |
 | post | '/graphql' |
 
 
-# Test Suite
+## Test Suite
  - run `bundle exec rspec` to run the test suite
 
 <details>
@@ -467,11 +469,13 @@ During the development of our Ruby on Rails application Foodie Brain, we had the
 In conclusion, working on this Ruby on Rails application was a challenging yet awarding experience. It brought together various aspects of web development, challenging us to create a dynamic application. The project allowed us to expand our knowledge and skills in API integration, database design, frontend development, and introduced a new tech in graphql. And it provided valuable lessons that will guide us in future endeavors.
 </details>
 
-# Frontend Repo Link
-[Frontend Repo](https://github.com/Foodie-Brain/fe_foodie)
+## Important Links
+- [Frontend Repo](https://github.com/Foodie-Brain/fe_foodie)
+- [BE production site](https://be-foodie-brain-b49c609f52cc.herokuapp.com/)
+- [FE production site](https://foodie-brain-4c71bb461e4b.herokuapp.com/)
 
 ---
-# Developed With
+## Developed With
 ---
 
 
