@@ -33,4 +33,18 @@ RSpec.describe Mutations::DestroyReview, type: :mutation do
 
     expect(Review.all.count).to eq(0)
   end
+
+  it 'returns an error if review does not exist' do
+    input = {
+      id: 999
+    }
+
+    result = BeFoodieBrainSchema.execute(
+      mutation,
+      variables: { input: input }
+    )
+    expect(result["errors"]).to_not be_nil
+    expect(result.dig("data", "destroyReview")).to be_nil
+    expect(result.dig("errors", 0, "message")).to eq("Review not found with id: 999")
+  end
 end
