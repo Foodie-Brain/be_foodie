@@ -4,6 +4,12 @@ class Mutations::DestroyReview < Mutations::BaseMutation
   type Types::ReviewType
 
   def resolve(id:)
-    Review.find(id).destroy
+    review = Review.find_by(id: id)
+
+    if review.nil? || review.blank?
+      raise GraphQL::ExecutionError, "Review not found with id: #{id}"
+    else
+      review.destroy
+    end
   end
 end
