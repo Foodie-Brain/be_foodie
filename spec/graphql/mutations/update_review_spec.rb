@@ -2,34 +2,34 @@ require 'rails_helper'
 
 RSpec.describe Mutations::UpdateReview, type: :mutation do
   describe 'updateReview' do
-    before :each do
-      @review = Review.create!(name: "Matcha Mochi Donut", photo: "example.png", description: "Donuts made with Mochi", dairy_free: 0, gluten_free: 0, halal: 0, kosher: 0, nut_free: 0, vegan: 0, vegetarian: 0, likes: 23, dislikes: 1, lat: "39.675827212143645", lng: "-104.8654249015717") 
-    end 
-      let(:mutation) do
-        <<~GQL
-          mutation updateReview($input: UpdateReviewInput!) {
-            updateReview(input: $input) {
-              id
-              name
-              description
-              photo
-              dairyFree
-              glutenFree
-              halal
-              kosher
-              nutFree
-              vegan
-              vegetarian
-              likes
-              dislikes
-              lat
-              lng
-            }
+    let(:file_path) { Rails.root.join('spec', 'fixtures','images', 'test.jpeg') }
+    let(:file) { Rack::Test::UploadedFile.new(file_path) }
+    let(:mutation) do
+      <<~GQL
+        mutation updateReview($input: UpdateReviewInput!) {
+          updateReview(input: $input) {
+            id
+            name
+            description
+            photoUrl
+            dairyFree
+            glutenFree
+            halal
+            kosher
+            nutFree
+            vegan
+            vegetarian
+            likes
+            dislikes
+            lat
+            lng
           }
-        GQL
-      end
+        }
+      GQL
+    end
 
     it 'updates the review' do
+      @review = Review.create!(name: "Matcha Mochi Donut", photo: file, description: "Donuts made with Mochi", dairy_free: 0, gluten_free: 0, halal: 0, kosher: 0, nut_free: 0, vegan: 0, vegetarian: 0, likes: 23, dislikes: 1, lat: "39.675827212143645", lng: "-104.8654249015717") 
       input = {
         id: @review.id,
         name: "sushi",
@@ -48,7 +48,7 @@ RSpec.describe Mutations::UpdateReview, type: :mutation do
       expect(result.dig("data", "updateReview", "name")).to_not eq("Matcha Mochi Donut")
       expect(result.dig("data", "updateReview", "description")).to_not eq("Donuts made with Mochi")
 
-      expect(result.dig("data", "updateReview", "photo")).to eq("example.png")
+      expect(result.dig("data", "updateReview", "photoUrl")).to be_a(String)
       expect(result.dig("data", "updateReview", "lat")).to eq("39.675827212143645")
       expect(result.dig("data", "updateReview", "lng")).to eq("-104.8654249015717")
       expect(result.dig("data", "updateReview", "glutenFree")).to eq(0)
