@@ -17,7 +17,8 @@ input CreateReviewInput {
   lng: String!
   name: String!
   nutFree: Int = 0
-  photo: String!
+  photo: Upload
+  photoUrl: String
   vegan: Int = 0
   vegetarian: Int = 0
 }
@@ -84,6 +85,7 @@ type Review {
   name: String
   nutFree: Int
   photo: String
+  photoUrl: String
   updatedAt: ISO8601DateTime!
   vegan: Int
   vegetarian: Int
@@ -113,3 +115,5 @@ input UpdateReviewInput {
   vegan: Int
   vegetarian: Int
 }
+
+scalar Upload
