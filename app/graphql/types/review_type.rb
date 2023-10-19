@@ -16,7 +16,7 @@ module Types
     field :likes, Integer
     field :dislikes, Integer
     field :lat, String
-    field :lon, String
+    field :lng, String
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
   end
