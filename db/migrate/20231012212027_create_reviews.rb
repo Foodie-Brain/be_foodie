@@ -14,7 +14,7 @@ class CreateReviews < ActiveRecord::Migration[7.0]
       t.integer :likes, default: 0
       t.integer :dislikes, default: 0
       t.string :lat
-      t.string :lng
+      t.string :lon
 
       t.timestamps
     end
