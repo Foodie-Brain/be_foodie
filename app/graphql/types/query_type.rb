@@ -40,7 +40,7 @@ module Types
       null: false,
       description: "Returns list of reviews"
     def reviews
-      Review.all
+      Review.all.reverse
     end
   end
 end
