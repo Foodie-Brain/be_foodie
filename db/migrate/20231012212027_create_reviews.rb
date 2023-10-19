@@ -2,7 +2,6 @@ class CreateReviews < ActiveRecord::Migration[7.0]
   def change
     create_table :reviews do |t|
       t.string :name
-      t.string :photo
       t.string :description
       t.integer :dairy_free, default: 0
       t.integer :gluten_free, default: 0
