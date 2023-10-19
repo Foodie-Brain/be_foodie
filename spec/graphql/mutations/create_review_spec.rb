@@ -7,7 +7,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
     let(:photo) { "fake_url.png" }
     let(:gluten_free) { 1 }
     let(:lat) { "39.72740886344144" }
-    let(:lon) { "-104.93939410569635" }
+    let(:lng) { "-104.93939410569635" }
 
     # Create a valid GraphQL query for the mutation
       let(:mutation) do
@@ -28,7 +28,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
               likes
               dislikes
               lat
-              lon
+              lng
             }
           }
         GQL
@@ -41,7 +41,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
         photo: photo,
         glutenFree: gluten_free,
         lat: lat,
-        lon: lon
+        lng: lng
       }
 
       result = BeFoodieBrainSchema.execute(
@@ -60,7 +60,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
       expect(result.dig("data", "createReview", "photo")).to eq(photo)
       expect(result.dig("data", "createReview", "glutenFree")).to eq(gluten_free)
       expect(result.dig("data", "createReview", "lat")).to eq(lat)
-      expect(result.dig("data", "createReview", "lon")).to eq(lon)
+      expect(result.dig("data", "createReview", "lng")).to eq(lng)
 
       #expected default values not defined in request
       expect(result.dig("data", "createReview", "dairyFree")).to eq(0)
@@ -80,7 +80,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
     let(:photo) { "fake_url.png" }
     let(:gluten_free) { 1 }
     let(:lat) { "39.72740886344144" }
-    let(:lon) { "-104.93939410569635" }
+    let(:lng) { "-104.93939410569635" }
 
       let(:mutation) do
         <<~GQL
@@ -100,7 +100,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
               likes
               dislikes
               lat
-              lon
+              lng
             }
           }
         GQL
@@ -113,7 +113,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
         photo: photo,
         glutenFree: gluten_free,
         lat: lat,
-        lon: lon
+        lng: lng
       }
 
       result = BeFoodieBrainSchema.execute(
@@ -131,7 +131,7 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
         photo: photo,
         glutenFree: gluten_free,
         lat: lat,
-        lon: lon
+        lng: lng
       }
 
       result2 = BeFoodieBrainSchema.execute(

@@ -14,7 +14,7 @@ input CreateReviewInput {
   kosher: Int = 0
   lat: String!
   likes: Int = 0
-  lon: String!
+  lng: String!
   name: String!
   nutFree: Int = 0
   photo: String!
@@ -80,7 +80,7 @@ type Review {
   kosher: Int
   lat: String
   likes: Int
-  lon: String
+  lng: String
   name: String
   nutFree: Int
   photo: String
@@ -106,7 +106,7 @@ input UpdateReviewInput {
   kosher: Int
   lat: String
   likes: Int
-  lon: String
+  lng: String
   name: String
   nutFree: Int
   photo: String
