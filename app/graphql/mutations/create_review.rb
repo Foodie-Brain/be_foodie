@@ -12,12 +12,12 @@ class Mutations::CreateReview < Mutations::BaseMutation
   argument :likes, Integer, required: false, default_value: 0
   argument :dislikes, Integer, required: false, default_value: 0
   argument :lat, String, required: true
-  argument :lon, String, required: true
+  argument :lng, String, required: true
 
   type Types::ReviewType
   field :errors, [String], null: false
 
-  def resolve(name:, photo:, description:, dairy_free:, gluten_free:, halal:, kosher:, nut_free:, vegan:, vegetarian:, likes:, dislikes:, lat:, lon:)
+  def resolve(name:, photo:, description:, dairy_free:, gluten_free:, halal:, kosher:, nut_free:, vegan:, vegetarian:, likes:, dislikes:, lat:, lng:)
     review = Review.new(name: name, 
       photo: photo, 
       description: description, 
@@ -31,7 +31,7 @@ class Mutations::CreateReview < Mutations::BaseMutation
       likes: likes, 
       dislikes: dislikes, 
       lat: lat, 
-      lon: lon)
+      lng: lng)
 
       if review.valid?
         review.save

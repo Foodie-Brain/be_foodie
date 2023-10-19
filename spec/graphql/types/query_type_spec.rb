@@ -20,7 +20,7 @@ RSpec.describe Types::QueryType, type: :query do
             likes
             dislikes
             lat
-            lon
+            lng
           }
         }
       GQL
@@ -46,7 +46,7 @@ RSpec.describe Types::QueryType, type: :query do
           "likes" => review.likes,
           "dislikes" => review.dislikes,
           "lat" => review.lat,
-          "lon" => review.lon
+          "lng" => review.lng
         } }
       )
     end
@@ -69,7 +69,7 @@ RSpec.describe Types::QueryType, type: :query do
             likes
             dislikes
             lat
-            lon
+            lng
           }
         }
       GQL
@@ -96,7 +96,7 @@ RSpec.describe Types::QueryType, type: :query do
           "likes" => review.likes,
           "dislikes" => review.dislikes,
           "lat" => review.lat,
-          "lon" => review.lon
+          "lng" => review.lng
         }
       )
     end
@@ -119,7 +119,7 @@ RSpec.describe Types::QueryType, type: :query do
           likes
           dislikes
           lat
-          lon
+          lng
         }
       }
     GQL

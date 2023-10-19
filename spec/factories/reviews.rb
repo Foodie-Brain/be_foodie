@@ -13,6 +13,6 @@ FactoryBot.define do
     likes { Faker::Number.between(from: 0, to: 1000) }
     dislikes { Faker::Number.between(from: 0, to: 1000) }
     lat { Faker::Address.latitude }
-    lon { Faker::Address.longitude }
+    lng { Faker::Address.longitude }
   end
 end

@@ -13,7 +13,7 @@ class Mutations::UpdateReview < Mutations::BaseMutation
   argument :likes, Integer, required: false
   argument :dislikes, Integer, required: false
   argument :lat, String, required: false
-  argument :lon, String, required: false
+  argument :lng, String, required: false
 
   type Types::ReviewType
 

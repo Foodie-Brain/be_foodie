@@ -6,7 +6,7 @@ RSpec.describe Review, type: :model do
     # it { should validate_presence_of(:photo) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:lat) }
-    it { should validate_presence_of(:lon) }
+    it { should validate_presence_of(:lng) }
     it { should validate_numericality_of(:dairy_free) }
     it { should validate_numericality_of(:gluten_free) }
     it { should validate_numericality_of(:halal) }

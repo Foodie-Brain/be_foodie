@@ -212,7 +212,7 @@
               "deprecationReason": null
             },
             {
-              "name": "lon",
+              "name": "lng",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -655,7 +655,7 @@
               ]
             },
             {
-              "name": "lon",
+              "name": "lng",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -963,7 +963,7 @@
               "deprecationReason": null
             },
             {
-              "name": "lon",
+              "name": "lng",
               "description": null,
               "type": {
                 "kind": "SCALAR",
