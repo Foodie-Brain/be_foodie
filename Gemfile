@@ -38,6 +38,7 @@ gem "rack-cors"
 
 # GraphQL is a query language for APIs and a runtime for fulfilling those queries with the existing data. 
 gem 'graphql'
+gem 'apollo_upload_server'
 gem 'faraday'
 
 group :development, :test do
