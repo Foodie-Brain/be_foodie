@@ -5,6 +5,7 @@ module Types
     field :id, ID, null: false
     field :name, String
     field :photo, String
+    field :photo_url, String, null: true
     field :description, String
     field :dairy_free, Integer
     field :gluten_free, Integer
@@ -19,5 +20,9 @@ module Types
     field :lng, String
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+
+    def photo_url
+      self.object.photo_url
+    end
   end
 end

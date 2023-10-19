@@ -1,6 +1,7 @@
 class Mutations::CreateReview < Mutations::BaseMutation
   argument :name, String, required: true
-  argument :photo, String # TODO make photo required
+  argument :photo, ApolloUploadServer::Upload, required: false #TODO: Update to required once FE operational
+  argument :photo_url, String, required: false #TODO: Update to required once FE operational
   argument :description, String, required: true
   argument :dairy_free, Integer, required: false, default_value: 0
   argument :gluten_free, Integer, required: false, default_value: 0
@@ -19,7 +20,7 @@ class Mutations::CreateReview < Mutations::BaseMutation
 
   def resolve(name:, photo:, description:, dairy_free:, gluten_free:, halal:, kosher:, nut_free:, vegan:, vegetarian:, likes:, dislikes:, lat:, lng:)
     review = Review.new(name: name, 
-      photo: photo, 
+      photo: photo.tempfile,
       description: description, 
       dairy_free: dairy_free, 
       gluten_free: gluten_free, 
