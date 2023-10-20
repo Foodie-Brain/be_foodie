@@ -222,7 +222,31 @@ RSpec.describe Mutations::CreateReview, type: :mutation do
       review = Review.last
 
       expect(review.photo.attached?).to be true
-      expect(review.photo.blob[:filename]).to eq('test.jpeg')
+      expect(review.photo.blob[:filename]).to include('test','.jpeg')
+    end
+    
+    it 'creates a new review with a default image (image not provided)' do    
+      input = {
+        name: name,
+        description: description,
+        glutenFree: gluten_free,
+        lat: lat,
+        lng: lng
+      }
+
+      expect(Review.count).to eq(0)
+      result = BeFoodieBrainSchema.execute(
+        mutation, 
+        variables: { input: input }
+      )
+
+      expect(result["errors"]).to be_nil
+      expect(Review.count).to eq(1)
+
+      review = Review.last
+
+      expect(review.photo.attached?).to be true
+      expect(review.photo.blob[:filename]).to eq('no-image-default.jpeg')
     end
   end
 end
