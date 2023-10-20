@@ -21,11 +21,10 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    field :review,
-      Types::ReviewType,
-      null: false do
+    field :review, Types::ReviewType, null: false do
         argument :id, ID, required: true
-      end
+    end
+
     def review(id:)
       review = Review.find_by(id: id)
 
@@ -34,11 +33,8 @@ module Types
       end
         review
     end
-    
-    field :reviews,
-      [Types::ReviewType],
-      null: false,
-      description: "Returns list of reviews"
+
+    field :reviews, [Types::ReviewType], null: false, description: "Returns list of reviews"
     def reviews
       Review.all.reverse
     end
