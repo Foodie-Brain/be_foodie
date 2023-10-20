@@ -17,7 +17,7 @@ input CreateReviewInput {
   lng: String!
   name: String!
   nutFree: Int = 0
-  photo: Upload
+  photo: Upload = null
   photoUrl: String
   vegan: Int = 0
   vegetarian: Int = 0
