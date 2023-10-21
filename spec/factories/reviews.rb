@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :review do
     name { Faker::Food.dish }
-    photo { "#{Faker::JapaneseMedia::StudioGhibli.character}.jpg" }
+    photo { Rack::Test::UploadedFile.new('spec/fixtures/images/test.jpeg') }
     description { Faker::Food.description }
     dairy_free { Faker::Number.between(from: 0, to: 1) }
     gluten_free { Faker::Number.between(from: 0, to: 1) }

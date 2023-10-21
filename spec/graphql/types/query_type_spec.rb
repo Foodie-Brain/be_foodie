@@ -9,7 +9,7 @@ RSpec.describe Types::QueryType, type: :query do
             id
             name
             description
-            photo
+            photoUrl
             dairyFree
             glutenFree
             halal
@@ -29,13 +29,12 @@ RSpec.describe Types::QueryType, type: :query do
       result = BeFoodieBrainSchema.execute(reviews_query)
 
       expect(result["errors"]).to be_nil
-
       expect(result.dig("data", "reviews")).to match_array(
         reviews.map { |review| { 
           "id" => review.id.to_s, 
           "name" => review.name,
           "description" => review.description,
-          "photo" => review.photo,
+          "photoUrl" => review.photo_url,
           "dairyFree" => review.dairy_free,
           "glutenFree" => review.gluten_free,
           "halal" => review.halal,
@@ -58,7 +57,7 @@ RSpec.describe Types::QueryType, type: :query do
             id
             name
             description
-            photo
+            photoUrl
             dairyFree
             glutenFree
             halal
@@ -85,7 +84,7 @@ RSpec.describe Types::QueryType, type: :query do
           "id" => review.id.to_s, 
           "name" => review.name,
           "description" => review.description,
-          "photo" => review.photo,
+          "photoUrl" => review.photo_url,
           "dairyFree" => review.dairy_free,
           "glutenFree" => review.gluten_free,
           "halal" => review.halal,
