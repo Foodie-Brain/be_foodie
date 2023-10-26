@@ -41,6 +41,9 @@ gem 'graphql'
 gem 'apollo_upload_server'
 gem 'faraday'
 
+# AWS S3 Bucket for storing images
+gem 'aws-sdk-s3'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
